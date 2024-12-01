@@ -1,0 +1,6 @@
+dist-newstyle/
+*.o
+*.hi
+*.me
+input
+test-input
