@@ -20,6 +20,8 @@ bisectByParity = \case
   [] -> ([], [])
   (x : xs) -> let (odds, evens) = bisectByParity xs in (x : evens, odds)
 trace1 v = trace (show v) v
+infixl 0 |>
+v |> f = f v
 
 input :: IO String
 main :: IO ()
