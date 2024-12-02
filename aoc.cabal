@@ -52,18 +52,18 @@ common language
     default-language: GHC2021
 
     ghc-options:
-        -Weverything
-        -Werror=missing-methods
-        -Wno-missing-exported-signatures
-        -Wno-missing-import-lists
-        -Wno-missed-specialisations
-        -Wno-all-missed-specialisations
-        -Wno-unsafe
-        -Wno-safe
-        -Wno-missing-local-signatures
-        -Wno-missing-safe-haskell-mode
-        -Wno-missing-export-lists
-        -Wno-implicit-prelude
+        -- -Weverything
+        -- -Werror=missing-methods
+        -- -Wno-missing-exported-signatures
+        -- -Wno-missing-import-lists
+        -- -Wno-missed-specialisations
+        -- -Wno-all-missed-specialisations
+        -- -Wno-unsafe
+        -- -Wno-safe
+        -- -Wno-missing-local-signatures
+        -- -Wno-missing-safe-haskell-mode
+        -- -Wno-missing-export-lists
+        -- -Wno-implicit-prelude
         -- -Wno-monomorphism-restriction
 
     default-extensions:
