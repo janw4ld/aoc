@@ -16,13 +16,17 @@ part2 = id
 
 prepInput = id
 
+markSignChanges (x : y : xs) = (x * y < 0) : markSignChanges (y : xs)
+markSignChanges _ = []
+diffEachTwo (x : y : xs) = x - y : diffEachTwo (y : xs)
+diffEachTwo _ = []
 bisectByParity = \case
   [] -> ([], [])
   (x : xs) -> let (odds, evens) = bisectByParity xs in (x : evens, odds)
+
+deleteAt xs n = take n xs <> drop (n + 1) xs
 trace1 v = trace (show v) v
 infixl 0 |>
 v |> f = f v
 
-input :: IO String
-main :: IO ()
 main = input >>= print . solve

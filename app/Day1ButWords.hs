@@ -1,3 +1,6 @@
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+
+{-# HLINT ignore "Use map once" #-}
 module Main (main) where
 
 import Control.Monad
@@ -21,8 +24,10 @@ part2 =
 prepInput =
   join bimap sort
     -- . bisectByParity
-    . foldl' (\(l, r) [a, b] -> (a : l, b : r)) ([], [])
-    . map (map @_ @Int read . words)
+    . unzip
+    . map (\[a, b] -> (a, b))
+    . (map . map) read
+    . map words
     . lines
 
 bisectByParity = \case
