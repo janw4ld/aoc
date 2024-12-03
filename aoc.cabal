@@ -73,6 +73,8 @@ common language
         LambdaCase
         NoStarIsType
         RecordWildCards
+        ViewPatterns
+        PatternGuards
 
 
 executable aoc
