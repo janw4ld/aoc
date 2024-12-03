@@ -8,7 +8,6 @@ import Data.List
 import Data.Maybe
 
 -- input = readFile "./test-input"
-
 input = readFile "./input"
 solve = part2 . prepInput
 
@@ -17,11 +16,7 @@ part1 = sum . map (uncurry (*)) . parse
 part2 =
   sum
     . concatMap
-      ( map (uncurry (*))
-          . parse
-          . head
-          . splitOn "don't()"
-      )
+      (map (uncurry (*)) . parse . head . splitOn "don't()")
     . splitOn "do()"
 
 prepInput = ("do()" <>)

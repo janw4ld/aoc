@@ -23,7 +23,6 @@ splitOn delim str
   | otherwise =
       let (h : rest) = splitOn delim (tail str)
        in (head str : h) : rest
-
 zipAdjacentWith f xs = zipWith f xs (tail xs)
 markSignChanges = zipAdjacentWith (\x y -> x * y < 0)
 diffEachTwo = zipAdjacentWith (-)
