@@ -17,12 +17,19 @@ part2 = id
 
 prepInput = id
 
-zipEachTwoWith f xs = zipWith f xs (tail xs)
-markSignChanges = zipEachTwoWith (\x y -> x * y < 0)
-diffEachTwo = zipEachTwoWith (-)
-bisectByParity = \case
+splitOn delim str
+  | null str = [[]]
+  | delim `isPrefixOf` str = [] : splitOn delim (drop (length delim) str)
+  | otherwise =
+      let (h : rest) = splitOn delim (tail str)
+       in (head str : h) : rest
+
+zipAdjacentWith f xs = zipWith f xs (tail xs)
+markSignChanges = zipAdjacentWith (\x y -> x * y < 0)
+diffEachTwo = zipAdjacentWith (-)
+groupByParity = \case
   [] -> ([], [])
-  (x : xs) -> let (odds, evens) = bisectByParity xs in (x : evens, odds)
+  (x : xs) -> let (odds, evens) = groupByParity xs in (x : evens, odds)
 
 deleteAt xs n = take n xs <> drop (n + 1) xs
 trace1 v = trace (show v) v
