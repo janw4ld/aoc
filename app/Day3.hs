@@ -28,7 +28,7 @@ prepInput = ("do()" <>)
 
 parse str
   | str == "" = []
-  | "mul(" `isPrefixOf` str = fromMaybe (parse (tail str)) $ do
+  | "mul(" `isPrefixOf` str = fromMaybe (parse (drop 4 str)) $ do
       let (left, rest1) = first (read @Int) $ span isDigit $ drop 4 str
       guard $ validInt left && "," `isPrefixOf` rest1
       let (right, rest2) = first (read @Int) . span isDigit $ drop 1 rest1
