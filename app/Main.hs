@@ -16,10 +16,9 @@ part2 = id
 
 prepInput = id
 
-markSignChanges (x : y : xs) = (x * y < 0) : markSignChanges (y : xs)
-markSignChanges _ = []
-diffEachTwo (x : y : xs) = x - y : diffEachTwo (y : xs)
-diffEachTwo _ = []
+zipEachTwoWith f xs = zipWith f xs (tail xs)
+markSignChanges = zipEachTwoWith (\x y -> x * y < 0)
+diffEachTwo = zipEachTwoWith (-)
 bisectByParity = \case
   [] -> ([], [])
   (x : xs) -> let (odds, evens) = bisectByParity xs in (x : evens, odds)

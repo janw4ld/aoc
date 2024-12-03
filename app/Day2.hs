@@ -27,11 +27,9 @@ part1 =
 isSafe l = all not (markSignChanges l) && all inSafeRange l
 inSafeRange x = abs x > 0 && abs x <= 3
 
-markSignChanges (x : y : xs) = (x * y < 0) : markSignChanges (y : xs)
-markSignChanges _ = []
-
-diffEachTwo (x : y : xs) = x - y : diffEachTwo (y : xs)
-diffEachTwo _ = []
+markSignChanges = zipEachTwoWith (\x y -> x * y < 0)
+diffEachTwo = zipEachTwoWith (-)
+zipEachTwoWith f xs = zipWith f xs (tail xs)
 
 prepInput =
   (map . map) (read @Int)
