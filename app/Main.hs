@@ -1,3 +1,4 @@
+{- HLINT ignore "Use map once" -}
 module Main (main) where
 
 import Control.Monad
