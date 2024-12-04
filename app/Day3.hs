@@ -19,7 +19,7 @@ part2 =
       (map (uncurry (*)) . parse . head . splitOn "don't()")
     . splitOn "do()"
 
-prepInput = ("do()" <>)
+prepInput = id
 
 parse str
   | str == "" = []
