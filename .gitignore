@@ -1,3 +1,5 @@
+.ropeproject
+.venv
 dist-newstyle/
 *.o
 *.hi
