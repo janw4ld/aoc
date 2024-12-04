@@ -24,14 +24,12 @@ prepInput = ("do()" <>)
 parse str
   | str == "" = []
   | "mul(" `isPrefixOf` str = fromMaybe (parse (drop 4 str)) $ do
-      let (left, rest1) = first (read @Int) $ span isDigit $ drop 4 str
-      guard $ validInt left && "," `isPrefixOf` rest1
-      let (right, rest2) = first (read @Int) . span isDigit $ drop 1 rest1
-      guard $ validInt right && ")" `isPrefixOf` rest2
-      pure $ (left, right) : parse (drop 1 rest2)
+      let (left, c1 : rest1) = first (read @Int) $ span isDigit $ drop 4 str
+      guard $ ',' == c1
+      let (right, c2 : rest2) = first (read @Int) . span isDigit $ rest1
+      guard $ ')' == c2
+      pure $ (left, right) : parse rest2
   | otherwise = parse $ tail str
- where
-  validInt x = x < 1000 && x >= 0
 
 splitOn delim str
   | null str = [[]]
