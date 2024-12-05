@@ -9,41 +9,16 @@ import Data.List
 import Data.Maybe
 import Debug.Trace
 
--- input = readFile "./test-input"
+input = readFile "./test-input"
 
-input = readFile "./input"
+-- input = readFile "./input"
 solve = part1 . prepInput
 
-part1 grid =
-  sum
-    [ scanForXmas grid x y
-    | (y, line) <- zip [0 ..] grid
-    , (x, char) <- zip [0 ..] line
-    , char == anchor
-    ]
- where
-  anchor = 'X'
+part1 = id
 
 part2 = id
 
-prepInput = lines
-
-scanForXmas grid x y =
-  length
-    [ ()
-    | (dx, dy) <- deltas
-    , and $
-        [ grid !? y' >>= (!? x') & (== Just c)
-        | (c, s) <- steps
-        , let
-            x' = x + dx * s
-            y' = y + dy * s
-        ]
-    ]
- where
-  steps = [('M', 1), ('A', 2), ('S', 3)]
-  -- deltas = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (-1, -1), (1, -1), (-1, 1)]
-  deltas = [(dx, dy) | dx <- [-1 .. 1], dy <- [-1 .. 1], (dx, dy) /= (0, 0)]
+prepInput = id
 
 zipAdjacentWith f xs = zipWith f xs (drop 1 xs)
 markSignChanges = zipAdjacentWith (\x y -> x * y < 0)

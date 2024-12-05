@@ -33,13 +33,16 @@ common everything
 
 executable now
     import: everything
-    main-is:          Main.hs
+    main-is: Main.hs
 executable day1
     import: everything
-    main-is:          Day1.hs
+    main-is: Day1.hs
 executable day2
     import: everything
-    main-is:          Day2.hs
+    main-is: Day2.hs
 executable day3
     import: everything
-    main-is:          Day3.hs
+    main-is: Day3.hs
+executable day4
+    import: everything
+    main-is: Day4.hs
