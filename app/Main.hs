@@ -3,6 +3,7 @@ module Main (main) where
 
 import Control.Monad
 import Data.Bifunctor
+import Data.Function
 import Data.Functor
 import Data.List
 import Data.Maybe
@@ -31,8 +32,8 @@ scanForXmas grid x y =
   length
     [ ()
     | (dx, dy) <- deltas
-    , all id $
-        [ maybe False (== c) $ grid !? y' >>= (!? x')
+    , and $
+        [ grid !? y' >>= (!? x') & (== Just c)
         | (c, s) <- steps
         , let
             x' = x + dx * s
@@ -41,8 +42,8 @@ scanForXmas grid x y =
     ]
  where
   steps = [('M', 1), ('A', 2), ('S', 3)]
-  deltas = [(dx, dy) | dx <- [-1 .. 1], dy <- [-1 .. 1], (dx, dy) /= (0, 0)]
   -- deltas = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (-1, -1), (1, -1), (-1, 1)]
+  deltas = [(dx, dy) | dx <- [-1 .. 1], dy <- [-1 .. 1], (dx, dy) /= (0, 0)]
 
 zipAdjacentWith f xs = zipWith f xs (drop 1 xs)
 markSignChanges = zipAdjacentWith (\x y -> x * y < 0)
