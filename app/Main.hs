@@ -8,9 +8,9 @@ import Data.List
 import Data.Maybe
 import Debug.Trace
 
-input = readFile "./test-input"
+-- input = readFile "./test-input"
 
--- input = readFile "./input"
+input = readFile "./input"
 solve = part1 . prepInput
 
 part1 grid =
@@ -29,19 +29,20 @@ prepInput = lines
 
 scanForXmas grid x y =
   length
-    . filter id
-    . fromMaybe []
-    . sequence
-    $ [ (grid !? y' >>= (!? x')) <&> (== c)
-      | (c, s) <- steps
-      , (dx, dy) <- deltas
-      , let
-          x' = x + dx * s
-          y' = y + dy * s
-      ]
+    [ ()
+    | (dx, dy) <- deltas
+    , all id $
+        [ maybe False (== c) $ grid !? y' >>= (!? x')
+        | (c, s) <- steps
+        , let
+            x' = x + dx * s
+            y' = y + dy * s
+        ]
+    ]
  where
-  deltas = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (-1, -1), (1, -1), (-1, 1)]
   steps = [('M', 1), ('A', 2), ('S', 3)]
+  deltas = [(dx, dy) | dx <- [-1 .. 1], dy <- [-1 .. 1], (dx, dy) /= (0, 0)]
+  -- deltas = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (-1, -1), (1, -1), (-1, 1)]
 
 zipAdjacentWith f xs = zipWith f xs (drop 1 xs)
 markSignChanges = zipAdjacentWith (\x y -> x * y < 0)
