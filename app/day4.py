@@ -9,7 +9,7 @@ ANCHOR = "X"
 STEPS = {"M": 1, "A": 2, "S": 3}
 
 
-def scan_occurrences(x_x, x_y):
+def scan_for_xmas(x_x, x_y):
     return sum(  # implicit cast to int
         all(
             0 <= x_x + d_x * s < len(lines[0])
@@ -22,10 +22,36 @@ def scan_occurrences(x_x, x_y):
 
 
 part1 = sum(
-    scan_occurrences(x, y)
+    scan_for_xmas(x, y)
     for y, line in enumerate(lines)
     for x, char in enumerate(line)
     if char == ANCHOR
 )
+print(f"part 1: {part1}")
 
-print(part1)
+
+P2DELTAS = [(1, 1), (1, -1), (-1, -1), (-1, 1)]  # the order matters!
+P2ANCHOR = "A"
+
+
+def is_crossmas(x_x, x_y):
+    return (
+        "".join(
+            (
+                lines[x_y + d_y][x_x + d_x]
+                if (0 <= x_x + d_x < len(lines[0]) and 0 <= x_y + d_y < len(lines))
+                else ""
+            )
+            for (d_x, d_y) in P2DELTAS
+        )
+        * 2
+    ).find("MMSS") != -1
+
+
+part2 = sum(
+    is_crossmas(x, y)
+    for y, line in enumerate(lines)
+    for x, char in enumerate(line)
+    if char == P2ANCHOR
+)
+print(f"part 2: {part2}")
