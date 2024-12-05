@@ -10,21 +10,17 @@
   }:
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
-      ghcVersion = "ghc9101";
+      ghcVersion = "ghc98";
       hsPkgs = pkgs.haskell.packages.${ghcVersion};
     in {
       devShells.default = pkgs.mkShell {
-        packages =
-          (with hsPkgs; [
-            ghc
-            haskell-language-server
-            fourmolu
-            hoogle
-          ])
-          ++ (with pkgs; [
-            hlint
-            cabal-install
-          ]);
+        packages = with hsPkgs; [
+          ghc
+          cabal-install
+          hoogle
+          fourmolu
+          haskell-language-server
+        ];
 
         shellHook = ''echo henlo wrd :\)'';
       };
