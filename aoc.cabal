@@ -29,7 +29,7 @@ common everything
         RecordWildCards
         ViewPatterns
     build-depends:
-        base ^>=4.18.2.1,
+        base ^>=4.20.0.0,
 
 executable now
     import: everything
