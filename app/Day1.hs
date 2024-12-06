@@ -2,7 +2,7 @@ module Main (main) where
 
 import Control.Monad
 import Data.Bifunctor
-import Data.List
+import Data.List (sort)
 
 -- input = pure "3   4\n4   3\n2   5\n1   3\n3   9\n3   3"
 

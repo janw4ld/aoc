@@ -2,7 +2,7 @@
 module Main (main) where
 
 import Data.Function
-import Data.List
+import Data.List (isInfixOf, (!?))
 import Data.Maybe
 
 -- input = readFile "./test-input"

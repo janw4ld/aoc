@@ -4,7 +4,7 @@ module Main (main) where
 import Control.Monad
 import Data.Bifunctor
 import Data.Char
-import Data.List
+import Data.List (isPrefixOf)
 import Data.Maybe
 
 -- input = readFile "./test-input"
