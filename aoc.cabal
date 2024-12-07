@@ -54,3 +54,7 @@ executable day4
 executable day5
     import: everything
     main-is: Day5.hs
+-- no day6 :(
+executable day7
+    import: everything
+    main-is: Day7.hs

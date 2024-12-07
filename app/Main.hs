@@ -20,8 +20,9 @@ part2 = id
 
 prepInput = id
 
+factorials = 1 : zipWith (*) factorials [1 ..]
 toTuple [a, b] = (a, b)
-dupe l = l <> l
+dupe = join (++)
 markSignChanges = zipAdjacentWith (\x y -> x * y < 0)
 diffEachTwo = zipAdjacentWith (-)
 consAdjacent = zipAdjacentWith (\a b -> [a, b])
