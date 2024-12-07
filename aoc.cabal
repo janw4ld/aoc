@@ -8,6 +8,9 @@ common everything
     hs-source-dirs:   app
     default-language: GHC2021
     ghc-options:
+        -threaded
+        -rtsopts
+        -with-rtsopts=-N
         -- -Weverything
         -- -Werror=missing-methods
         -- -Wno-missing-exported-signatures
@@ -21,13 +24,15 @@ common everything
         -- -Wno-missing-export-lists
         -- -Wno-implicit-prelude
         -- -Wno-monomorphism-restriction
+        -- -Wno-missing-role-annotations
     default-extensions:
-        DerivingStrategies
-        OverloadedStrings
         LambdaCase
-        NoStarIsType
+        OverloadedStrings
         RecordWildCards
-        ViewPatterns
+        NoStarIsType
+        DerivingStrategies
+        FlexibleInstances
+        RoleAnnotations
     build-depends:
         base >=4.19.0.0,
 
