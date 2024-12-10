@@ -11,6 +11,8 @@ common everything
         -threaded
         -rtsopts
         -with-rtsopts=-N
+        -- -prof
+        -- -fprof-auto
         -- -Weverything
         -- -Werror=missing-methods
         -- -Wno-missing-exported-signatures
@@ -62,3 +64,6 @@ executable day7
 executable day8
     import: everything
     main-is: Day8.hs
+executable day9
+    import: everything
+    main-is: Day9.hs
