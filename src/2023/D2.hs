@@ -1,4 +1,3 @@
-{- HLINT ignore "Use map once" -}
 module Main (main) where
 
 import Control.Monad
@@ -7,23 +6,49 @@ import Data.Char
 import Data.Function
 import Data.Functor
 import Data.List
+import Data.Map.Strict qualified as M
 import Data.Maybe
 import Data.Set qualified as S
 import Debug.Trace
 
 main = input >>= print . solve
 
-input = readFile "./test-input"
+-- input = readFile "./test-input"
 
--- input = readFile "./input"
+input = readFile "./input"
 
-solve = part1 . prepInput
+solve = part2 . prepInput
 
-part1 = id
+part2 = sum . map (M.foldl' (*) 1 . foldr1 @[] (unionWith max))
 
-part2 = id
+part1 =
+  foldl'
+    ( \acc -> \case
+        (gno, m)
+          | m M.! "red" <= 12 && m M.! "green" <= 13 && m M.! "blue" <= 14 ->
+              gno + acc
+          | otherwise -> acc
+    )
+    0
+    . zip @Int [1 ..]
+    . map (foldr1 @[] (unionWith max))
 
-prepInput = id
+unionWith = M.unionWith @String @Int
+
+prepInput =
+  map
+    ( map
+        ( M.fromList
+            . map ((\[v, c] -> (c, read @Int v)) . words)
+            . splitOn ", "
+        )
+        . splitOn "; "
+        . last
+        . splitOn ": "
+    )
+    . lines
+
+parseInt = read @Int . takeWhile isDigit . dropWhile (not . isDigit)
 
 interleave a b = concat . transpose $ [a, b]
 infixr 5 |||

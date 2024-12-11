@@ -13,20 +13,20 @@ common everything
         -- -prof
         -- -fprof-auto
         -- -with-rtsopts=-p
-        -- -Weverything
-        -- -Werror=missing-methods
-        -- -Wno-missing-exported-signatures
-        -- -Wno-missing-import-lists
-        -- -Wno-missed-specialisations
-        -- -Wno-all-missed-specialisations
-        -- -Wno-unsafe
-        -- -Wno-safe
-        -- -Wno-missing-local-signatures
-        -- -Wno-missing-safe-haskell-mode
-        -- -Wno-missing-export-lists
-        -- -Wno-implicit-prelude
-        -- -Wno-monomorphism-restriction
-        -- -Wno-missing-role-annotations
+        -Weverything
+        -Werror=missing-methods
+        -Wno-missing-exported-signatures
+        -Wno-missing-import-lists
+        -Wno-missed-specialisations
+        -Wno-all-missed-specialisations
+        -Wno-unsafe
+        -Wno-safe
+        -Wno-missing-local-signatures
+        -Wno-missing-safe-haskell-mode
+        -Wno-missing-export-lists
+        -Wno-implicit-prelude
+        -Wno-monomorphism-restriction
+        -Wno-missing-role-annotations
     default-extensions:
         LambdaCase
         OverloadedStrings
@@ -41,11 +41,13 @@ common everything
 
 common 2024
     hs-source-dirs: src/2024
+common 2023
+    hs-source-dirs: src/2023
 
 executable now
     import: everything
     hs-source-dirs: src
-    main-is: Now.hs
+    main-is: Main.hs
 
 executable 24d1
     import: everything
@@ -80,3 +82,12 @@ executable 24d9
     import: everything
     import: 2024
     main-is: D9.hs
+
+executable 23d1
+    import: everything
+    import: 2023
+    main-is: D1.hs
+executable 23d2
+    import: everything
+    import: 2023
+    main-is: D2.hs
