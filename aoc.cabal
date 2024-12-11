@@ -5,7 +5,6 @@ author:             janw4ld
 build-type:         Simple
 
 common everything
-    hs-source-dirs:   app
     default-language: GHC2021
     ghc-options:
         -threaded
@@ -40,31 +39,44 @@ common everything
         base >=4.19.0.0,
         containers
 
+common 2024
+    hs-source-dirs: src/2024
+
 executable now
     import: everything
-    main-is: Main.hs
-executable day1
+    hs-source-dirs: src
+    main-is: Now.hs
+
+executable 24d1
     import: everything
-    main-is: Day1.hs
-executable day2
+    import: 2024
+    main-is: D1.hs
+executable 24d2
     import: everything
-    main-is: Day2.hs
-executable day3
+    import: 2024
+    main-is: D2.hs
+executable 24d3
     import: everything
-    main-is: Day3.hs
-executable day4
+    import: 2024
+    main-is: D3.hs
+executable 24d4
     import: everything
-    main-is: Day4.hs
-executable day5
+    import: 2024
+    main-is: D4.hs
+executable 24d5
     import: everything
-    main-is: Day5.hs
--- no day6 :(
-executable day7
+    import: 2024
+    main-is: D5.hs
+-- no 24d6 :(
+executable 24d7
     import: everything
-    main-is: Day7.hs
-executable day8
+    import: 2024
+    main-is: D7.hs
+executable 24d8
     import: everything
-    main-is: Day8.hs
-executable day9
+    import: 2024
+    main-is: D8.hs
+executable 24d9
     import: everything
-    main-is: Day9.hs
+    import: 2024
+    main-is: D9.hs
