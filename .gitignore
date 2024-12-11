@@ -1,8 +1,9 @@
 .ropeproject
 .venv
-dist-newstyle/
+/dist-newstyle/
 *.o
 *.hi
 *.me
 input
 test-input
+/app/C*

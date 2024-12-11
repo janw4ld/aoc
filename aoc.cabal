@@ -13,6 +13,7 @@ common everything
         -with-rtsopts=-N
         -- -prof
         -- -fprof-auto
+        -- -with-rtsopts=-p
         -- -Weverything
         -- -Werror=missing-methods
         -- -Wno-missing-exported-signatures
