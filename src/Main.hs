@@ -1,21 +1,22 @@
 module Main (main) where
 
+import Control.Applicative
 import Control.Monad
 import Data.Bifunctor
 import Data.Char
 import Data.Function
 import Data.Functor
 import Data.List
-import Data.Map.Strict qualified as M
+import Data.Map qualified as M
 import Data.Maybe
 import Data.Set qualified as S
 import Debug.Trace
 
 main = input >>= print . solve
 
--- input = readFile "./test-input"
+input = readFile "./test-input"
 
-input = readFile "./input"
+-- input = readFile "./input"
 
 solve = part1 . prepInput
 
@@ -25,7 +26,9 @@ part1 = id
 
 prepInput = id
 
-parseInt = read @Int . takeWhile isDigit . dropWhile (not . isDigit)
+parseInts [] = []
+parseInts s = i : parseInts rest where (i, rest) = parseInt s
+parseInt = first (read @Int) . span isDigit . dropWhile (not . isDigit)
 
 interleave a b = concat . transpose $ [a, b]
 infixr 5 |||
@@ -51,12 +54,13 @@ groupByParity = \case
   [] -> ([], [])
   (x : xs) -> let (odds, evens) = groupByParity xs in (x : evens, odds)
 
-consAdjacent = zipAdjacentWith (\a b -> [a, b])
+consAdjacent = zipAdjacentWith cons
 markSignChanges = zipAdjacentWith (\x y -> x * y < 0)
 diffEachTwo = zipAdjacentWith (-)
 zipAdjacentWith f xs = zipWith f xs (drop 1 xs)
 factorials = 1 : zipWith (*) factorials [1 ..]
 
+cons a b = [a, b]
 toTuple [a, b] = (a, b)
 fromTuple (a, b) = [a, b]
 rotate n xs = take (length xs) $ drop n $ cycle xs

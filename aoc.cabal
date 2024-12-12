@@ -82,6 +82,11 @@ executable 24d9
     import: everything
     import: 2024
     main-is: D9.hs
+-- no 24d10
+executable 24d11
+    import: everything
+    import: 2024
+    main-is: D11.hs
 
 executable 23d1
     import: everything
